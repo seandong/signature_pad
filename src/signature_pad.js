@@ -238,7 +238,7 @@ SignaturePad.prototype._createPoint = function (x, y, time) {
 
 SignaturePad.prototype._addPoint = function (point) {
   const points = this.points;
-  let tmp;
+  var tmp;
 
   points.push(point);
 
@@ -329,7 +329,7 @@ SignaturePad.prototype._drawCurve = function (curve, startWidth, endWidth) {
 
   ctx.beginPath();
 
-  for (let i = 0; i < drawSteps; i += 1) {
+  for (var i = 0; i < drawSteps; i += 1) {
     // Calculate the Bezier (x, y) coordinate for this step.
     const t = i / drawSteps;
     const tt = t * t;
@@ -338,12 +338,12 @@ SignaturePad.prototype._drawCurve = function (curve, startWidth, endWidth) {
     const uu = u * u;
     const uuu = uu * u;
 
-    let x = uuu * curve.startPoint.x;
+    var x = uuu * curve.startPoint.x;
     x += 3 * uu * t * curve.control1.x;
     x += 3 * u * tt * curve.control2.x;
     x += ttt * curve.endPoint.x;
 
-    let y = uuu * curve.startPoint.y;
+    var y = uuu * curve.startPoint.y;
     y += 3 * uu * t * curve.control1.y;
     y += 3 * u * tt * curve.control2.y;
     y += ttt * curve.endPoint.y;
@@ -367,11 +367,11 @@ SignaturePad.prototype._drawDot = function (point) {
 };
 
 SignaturePad.prototype._fromData = function (pointGroups, drawCurve, drawDot) {
-  for (let i = 0; i < pointGroups.length; i += 1) {
+  for (var i = 0; i < pointGroups.length; i += 1) {
     const group = pointGroups[i];
 
     if (group.length > 1) {
-      for (let j = 0; j < group.length; j += 1) {
+      for (var j = 0; j < group.length; j += 1) {
         const rawPoint = group[j];
         const point = new Point(rawPoint.x, rawPoint.y, rawPoint.time);
         const color = rawPoint.color;
@@ -457,7 +457,7 @@ SignaturePad.prototype._toSVG = function () {
     + ` width="${maxX}"`
     + ` height="${maxY}"`
     + '>';
-  let body = svg.innerHTML;
+  var body = svg.innerHTML;
 
   // IE hack for missing innerHTML property on SVGElement
   if (body === undefined) {
@@ -465,7 +465,7 @@ SignaturePad.prototype._toSVG = function () {
     const nodes = svg.childNodes;
     dummy.innerHTML = '';
 
-    for (let i = 0; i < nodes.length; i += 1) {
+    for (var i = 0; i < nodes.length; i += 1) {
       dummy.appendChild(nodes[i].cloneNode(true));
     }
 

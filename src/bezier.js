@@ -8,11 +8,11 @@ function Bezier(startPoint, control1, control2, endPoint) {
 // Returns approximated length.
 Bezier.prototype.length = function () {
   const steps = 10;
-  let length = 0;
-  let px;
-  let py;
+  var length = 0;
+  var px;
+  var py;
 
-  for (let i = 0; i <= steps; i += 1) {
+  for (var i = 0; i <= steps; i += 1) {
     const t = i / steps;
     const cx = this._point(
       t,
